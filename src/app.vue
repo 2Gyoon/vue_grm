@@ -1,24 +1,7 @@
-<!--vue3-computed-->
-<!--
 <template>
-  <Fruits />
-</template>
-
-<script>
-import Fruits from "~/components/Fruits";
-export default {
-  components: {
-    Fruits,
-  },
-};
-</script>
--->
-
-<template>
-  <button @click="add">ADD</button>
-  <h1>{{ reversedMessage }}</h1>
-  <h1>{{ reversedMessage }}</h1>
-  <h1>{{ reversedMessage }}</h1>
+  <h1 @click="changeMessage">
+    {{ msg }}
+  </h1>
   <h1>{{ reversedMessage }}</h1>
 </template>
 
@@ -26,38 +9,26 @@ export default {
 export default {
   data() {
     return {
-      // Getter, Setter
-      msg: "Hello Computed!",
+      msg: "Hello?",
     };
   },
   computed: {
-    // 읽기 전용 Getter
-    // 계산된 데이터
-    // 캐싱 : 한 번 연산 해둔 값이 있으면 저장해둔 값을 사용함, 최적화 목적
-    /*
     reversedMessage() {
       return this.msg.split("").reverse().join("");
     },
-    */
-    // Getter, Setter
-    reversedMessage: {
-      get() {
-        return this.msg.split("").reverse().join("");
-      },
-      set(newValue) {
-        this.msg = newValue;
-      },
+  },
+  watch: {
+    // 특정한 데이터가 변경되는 것을 감시해서 추가적인 로직을 만들어 줄 때 사용(계산된 데이터도 감시가능)
+    msg(newValue) {
+      console.log("msg:", newValue);
+    },
+    reversedMessage() {
+      console.log("reversedMessage:", this.reversedMessage);
     },
   },
   methods: {
-    /*
-    reverseMessage() {
-      return this.msg.split("").reverse().join("");
-    },
-    */
-    add() {
-      this.reversedMessage += "!?";
-      // this.msg += "!?";
+    changeMessage() {
+      this.msg = "Good!";
     },
   },
 };
