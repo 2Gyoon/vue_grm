@@ -2,7 +2,10 @@
   "name": "wepack-template-basic",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production"
@@ -35,10 +38,6 @@
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.0.0-rc.1"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ],
   "dependencies": {
     "vue": "^3.2.11"
   }

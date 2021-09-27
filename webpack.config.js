@@ -1,9 +1,10 @@
+const _require = id => require(require.resolve(id, { paths: [require.main.path] }))
 // import
 const path = require('path');
 // path / __dirname node.js 환경에서 전역적으로 사용할 수 있는 변수
-const HtmlPlugin = require('html-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
+const HtmlPlugin = _require('html-webpack-plugin');
+const CopyPlugin = _require('copy-webpack-plugin');
+const { VueLoaderPlugin } = _require('vue-loader');
 
 // export
 module.exports = {
@@ -29,9 +30,7 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
-        use: [
-          'vue-loader'
-        ]
+        use: 'vue-loader'
       },
       {
         test: /\.s?css$/,
@@ -45,6 +44,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
+        exclude: /node_modules/, // 제외할 경로
         use: [
           'babel-loader'  // babel이 동작할 수 있는 기능을 webpack이 해석하기 위해 필요함
         ]
@@ -69,6 +69,9 @@ module.exports = {
     new VueLoaderPlugin()
   ],
   devServer: {
-    host: 'localhost'
+    host: 'localhost',
+    port: 8080,
+    hot: true
+
   }
 }
