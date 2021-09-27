@@ -36,6 +36,7 @@ export default {
 
 <style>
 h1 {
-  font-size: 30px;
+  font-size: 50px;
+  color: royalblue;
 }
 </style>
