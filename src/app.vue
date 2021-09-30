@@ -1,42 +1,40 @@
+<!--vue3-리스트렌더링-->
 <template>
-  <h1 @click="changeMessage">
-    {{ msg }}
-  </h1>
-  <h1>{{ reversedMessage }}</h1>
+  <button @click="handler">Click me!</button>
+  <ul>
+    <li v-for="{ id, name } in newFruits" :key="id">{{ name }}-{{ id }}</li>
+  </ul>
 </template>
 
 <script>
+import shortid from "shortid";
+
 export default {
   data() {
     return {
-      msg: "Hello?",
+      fruits: ["Apple", "Banana", "Cherry"],
+      /*
+      이러한 형식으로 계산됨
+      newFruits: [
+        {id: 0, name:'Apple'}
+        {id: 1, name:'Banana'}
+        {id: 2, name:'Cherry'}
+      ]
+      */
     };
   },
   computed: {
-    reversedMessage() {
-      return this.msg.split("").reverse().join("");
-    },
-  },
-  watch: {
-    // 특정한 데이터가 변경되는 것을 감시해서 추가적인 로직을 만들어 줄 때 사용(계산된 데이터도 감시가능)
-    msg(newValue) {
-      console.log("msg:", newValue);
-    },
-    reversedMessage() {
-      console.log("reversedMessage:", this.reversedMessage);
+    newFruits() {
+      return this.fruits.map((fruit) => ({
+        id: shortid.generate(), //generate() : 간단한 id를 생성
+        name: fruit,
+      }));
     },
   },
   methods: {
-    changeMessage() {
-      this.msg = "Good!";
+    handler() {
+      this.fruits.push("Orange");
     },
   },
 };
 </script>
-
-<style>
-h1 {
-  font-size: 50px;
-  color: royalblue;
-}
-</style>
