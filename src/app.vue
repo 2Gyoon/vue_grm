@@ -1,39 +1,24 @@
-<!--vue3-리스트렌더링-->
 <template>
-  <button @click="handler">Click me!</button>
-  <ul>
-    <li v-for="{ id, name } in newFruits" :key="id">{{ name }}-{{ id }}</li>
-  </ul>
+  <h1>{{ msg }}</h1>
+  <input type="text" v-model.trim="msg" />
+  <!-- 
+    :value="msg" @change="msg = $event.target.value"  
+    / v-model.lazy : blur 처리 되어야만 갱신
+    / v-model.number : 숫자로 계속 유지해야 할 때 사용
+    -->
 </template>
 
 <script>
-import shortid from "shortid";
-
 export default {
   data() {
     return {
-      fruits: ["Apple", "Banana", "Cherry"],
-      /*
-      이러한 형식으로 계산됨
-      newFruits: [
-        {id: 0, name:'Apple'}
-        {id: 1, name:'Banana'}
-        {id: 2, name:'Cherry'}
-      ]
-      */
+      msg: "Hello world!",
     };
   },
-  computed: {
-    newFruits() {
-      return this.fruits.map((fruit) => ({
-        id: shortid.generate(), //generate() : 간단한 id를 생성
-        name: fruit,
-      }));
-    },
-  },
-  methods: {
-    handler() {
-      this.fruits.push("Orange");
+  watch: {
+    msg() {
+      console.log(this.msg);
+      // trim() : 앞 뒤의 공백 없애줌
     },
   },
 };
