@@ -1,3 +1,4 @@
+<!--v-model 수식어-->
 <template>
   <h1>{{ msg }}</h1>
   <input type="text" v-model.trim="msg" />
@@ -23,3 +24,9 @@ export default {
   },
 };
 </script>
+
+<style>
+h1 {
+  font-size: 50px;
+}
+</style>
